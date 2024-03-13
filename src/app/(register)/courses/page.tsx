@@ -11,6 +11,12 @@ import {
 } from '@/app/ui/Table/table'
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Cursos',
+}
+
 export default function Page() {
   return (
     <main className="">
@@ -25,7 +31,7 @@ export default function Page() {
         </div>
         <div className="flex w-full flex-col items-start justify-center gap-2">
           <label htmlFor="course" className="text-neutral-300">
-            Curso
+            Período
           </label>
           <Input.Root>
             <Input.Control id="course" />
@@ -33,7 +39,7 @@ export default function Page() {
         </div>
         <div className="flex w-full flex-col items-start justify-center gap-2">
           <label htmlFor="registration" className="text-neutral-300">
-            Matrícula
+            Tipo
           </label>
           <Input.Root>
             <Input.Control id="registration" />
@@ -59,8 +65,8 @@ export default function Page() {
           <TableHeader className="border-neutral-900">
             <TableRow>
               <TableHead className="w-[360px]">Nome</TableHead>
-              <TableHead>Matricula</TableHead>
-              <TableHead>Curso</TableHead>
+              <TableHead>Período</TableHead>
+              <TableHead>Tipo</TableHead>
               <TableHead className="text-right"></TableHead>
               <TableHead className="text-right"></TableHead>
             </TableRow>
@@ -69,9 +75,9 @@ export default function Page() {
             {Array.from({ length: 7 }).map((item, i) => {
               return (
                 <TableRow key={i}>
-                  <TableCell className="font-medium">Murillo Orico</TableCell>
-                  <TableCell>AVSD3137178SDF</TableCell>
-                  <TableCell>Engenharia</TableCell>
+                  <TableCell className="font-medium">Engenharia</TableCell>
+                  <TableCell>Noturno</TableCell>
+                  <TableCell>Graduação</TableCell>
                   <TableCell className="w-[30px] text-right">
                     <Button variant="outline" className="p-3">
                       <Pencil className="h-4 w-4" />

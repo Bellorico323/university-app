@@ -11,13 +11,19 @@ import {
 } from '@/app/ui/Table/table'
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Matérias',
+}
+
 export default function Page() {
   return (
     <main className="">
       <form className="flex gap-4 p-8">
         <div className="flex w-full flex-col items-start justify-center gap-2">
           <label htmlFor="name" className="text-neutral-300">
-            Nome
+            Matéria
           </label>
           <Input.Root>
             <Input.Control id="name" />
@@ -25,7 +31,7 @@ export default function Page() {
         </div>
         <div className="flex w-full flex-col items-start justify-center gap-2">
           <label htmlFor="course" className="text-neutral-300">
-            Curso
+            Carga horária
           </label>
           <Input.Root>
             <Input.Control id="course" />
@@ -33,7 +39,7 @@ export default function Page() {
         </div>
         <div className="flex w-full flex-col items-start justify-center gap-2">
           <label htmlFor="registration" className="text-neutral-300">
-            Matrícula
+            Curso
           </label>
           <Input.Root>
             <Input.Control id="registration" />
@@ -58,8 +64,8 @@ export default function Page() {
         <Table>
           <TableHeader className="border-neutral-900">
             <TableRow>
-              <TableHead className="w-[360px]">Nome</TableHead>
-              <TableHead>Matricula</TableHead>
+              <TableHead className="w-[360px]">Matéria</TableHead>
+              <TableHead>Carga horária</TableHead>
               <TableHead>Curso</TableHead>
               <TableHead className="text-right"></TableHead>
               <TableHead className="text-right"></TableHead>
@@ -69,8 +75,10 @@ export default function Page() {
             {Array.from({ length: 7 }).map((item, i) => {
               return (
                 <TableRow key={i}>
-                  <TableCell className="font-medium">Murillo Orico</TableCell>
-                  <TableCell>AVSD3137178SDF</TableCell>
+                  <TableCell className="font-medium">
+                    Engenharia de software
+                  </TableCell>
+                  <TableCell>120 horas</TableCell>
                   <TableCell>Engenharia</TableCell>
                   <TableCell className="w-[30px] text-right">
                     <Button variant="outline" className="p-3">

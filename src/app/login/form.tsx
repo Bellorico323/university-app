@@ -30,7 +30,7 @@ export function Form() {
       onSubmit={handleSubmit(handleLoginSubmit)}
     >
       <h1 className="text-xl font-medium text-neutral-50">Login</h1>
-      <div className="flex flex-col gap-2 p-2">
+      <div className="flex flex-col gap-2 space-y-2">
         <label htmlFor="email" className="text-neutral-200">
           Email
         </label>

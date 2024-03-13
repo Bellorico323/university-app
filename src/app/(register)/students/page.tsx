@@ -11,6 +11,12 @@ import {
 } from '@/app/ui/Table/table'
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Alunos',
+}
+
 export default function Page() {
   return (
     <main className="">
@@ -61,6 +67,8 @@ export default function Page() {
               <TableHead className="w-[360px]">Nome</TableHead>
               <TableHead>Matricula</TableHead>
               <TableHead>Curso</TableHead>
+              <TableHead>Telefone</TableHead>
+
               <TableHead className="text-right"></TableHead>
               <TableHead className="text-right"></TableHead>
             </TableRow>
@@ -72,6 +80,8 @@ export default function Page() {
                   <TableCell className="font-medium">Murillo Orico</TableCell>
                   <TableCell>AVSD3137178SDF</TableCell>
                   <TableCell>Engenharia</TableCell>
+                  <TableCell>(11) 99999-9999</TableCell>
+
                   <TableCell className="w-[30px] text-right">
                     <Button variant="outline" className="p-3">
                       <Pencil className="h-4 w-4" />
