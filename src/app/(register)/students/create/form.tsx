@@ -1,6 +1,10 @@
 import { Button } from '@/app/ui/Button'
 import { Input } from '@/app/ui/Input'
+import { SelectInput } from '@/app/ui/Select'
+import { SelectItem } from '@/app/ui/Select/SelectItem'
+
 import { Plus } from 'lucide-react'
+import Link from 'next/link'
 
 export function CreateStudentForm() {
   return (
@@ -41,13 +45,14 @@ export function CreateStudentForm() {
         </Input.Root>
       </div>
 
-      <div className="col-span-2 flex w-full flex-col items-start justify-center gap-1">
+      <div className="col-span-2 flex w-full flex-col items-start justify-center gap-2">
         <label htmlFor="course" className="text-neutral-300">
           Curso
         </label>
-        <Input.Root>
-          <Input.Control id="course" />
-        </Input.Root>
+        <SelectInput placeholder="Selecione um curso">
+          <SelectItem value="eng" text="Engenharia" />
+          <SelectItem value="bio  " text="Biologia" />
+        </SelectInput>
       </div>
 
       <div className="col-span-4 flex w-full flex-col items-start justify-center gap-2">
@@ -62,12 +67,14 @@ export function CreateStudentForm() {
       <div className="col-span-4" />
 
       <div className="col-span-2 flex justify-end gap-5">
-        <Button
-          variant="ghost"
-          className="flex items-center justify-center gap-3 p-3"
-        >
-          Cancelar
-        </Button>
+        <Link href={'/students'}>
+          <Button
+            variant="ghost"
+            className="flex items-center justify-center gap-3 p-3"
+          >
+            Cancelar
+          </Button>
+        </Link>
 
         <Button
           variant="secondary"

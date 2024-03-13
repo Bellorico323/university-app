@@ -16,7 +16,6 @@ const InputControl = React.forwardRef<
       'flex-1 border-0 bg-transparent p-0 text-neutral-200 placeholder-neutral-600 focus:outline-none',
       className,
     )}
-    placeholder="Search"
     autoComplete="off"
     {...props}
     ref={ref}
