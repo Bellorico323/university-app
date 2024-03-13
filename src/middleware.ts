@@ -5,13 +5,13 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get('authjs.session-token')
   const pathname = request.nextUrl.pathname
 
-  // if (pathname === '/login' && token) {
-  //   return NextResponse.redirect(new URL(getUrl('/students')))
-  // }
+  if (pathname === '/login' && token) {
+    return NextResponse.redirect(new URL(getUrl('/students')))
+  }
 
-  // if (pathname.includes('/students') && !token) {
-  //   return NextResponse.redirect(new URL(getUrl('/login')))
-  // }
+  if (pathname.includes('/students') && !token) {
+    return NextResponse.redirect(new URL(getUrl('/login')))
+  }
 }
 
 export const config = {

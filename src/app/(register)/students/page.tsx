@@ -12,6 +12,7 @@ import {
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Alunos',
@@ -53,13 +54,16 @@ export default function Page() {
 
       <div className="flex flex-col p-8">
         <div className="ml-auto">
-          <Button
-            variant="primary"
-            className="flex items-center justify-center gap-2 p-3"
-          >
-            Cadastrar novo
-            <Plus className="h-5 w-5" />
-          </Button>
+          <Link href="/students/create">
+            <Button
+              variant="primary"
+              className="flex items-center justify-center gap-2 p-3"
+              // onClick={handleCreateNavigation}
+            >
+              Cadastrar novo
+              <Plus className="h-5 w-5" />
+            </Button>
+          </Link>
         </div>
         <Table>
           <TableHeader className="border-neutral-900">
