@@ -12,6 +12,7 @@ const button = tv({
     variant: {
       primary: 'bg-indigo-600 text-neutral-300 hover:bg-indigo-800',
       secondary: 'bg-emerald-600 text-neutral-300 hover:bg-emerald-800',
+      tertiary: 'bg-amber-600 text-neutral-300 hover:bg-amber-800',
       ghost:
         'rounded-md px-2 hover:bg-neutral-900 shadow-none text-neutral-100',
       outline:

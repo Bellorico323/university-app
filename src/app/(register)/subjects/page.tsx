@@ -9,7 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/app/ui/Table/table'
-import { Pencil, Plus, Trash2 } from 'lucide-react'
+import { CreateButton } from '@/app/ui/TableButtons'
+import { Pencil, Trash2 } from 'lucide-react'
 
 import { Metadata } from 'next'
 
@@ -53,13 +54,7 @@ export default function Page() {
 
       <div className="flex flex-col p-8">
         <div className="ml-auto">
-          <Button
-            variant="primary"
-            className="flex items-center justify-center gap-2 p-3"
-          >
-            Cadastrar novo
-            <Plus className="h-5 w-5" />
-          </Button>
+          <CreateButton url="/subjects/create" />
         </div>
         <Table>
           <TableHeader className="border-neutral-900">

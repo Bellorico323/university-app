@@ -9,10 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/app/ui/Table/table'
-import { Pencil, Plus, Trash2 } from 'lucide-react'
+import { CreateButton, DeleteButton, EditButton } from '@/app/ui/TableButtons'
 
 import { Metadata } from 'next'
-import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Alunos',
@@ -54,16 +53,7 @@ export default function Page() {
 
       <div className="flex flex-col p-8">
         <div className="ml-auto">
-          <Link href="/students/create">
-            <Button
-              variant="primary"
-              className="flex items-center justify-center gap-2 p-3"
-              // onClick={handleCreateNavigation}
-            >
-              Cadastrar novo
-              <Plus className="h-5 w-5" />
-            </Button>
-          </Link>
+          <CreateButton url="/students/create"></CreateButton>
         </div>
         <Table>
           <TableHeader className="border-neutral-900">
@@ -87,14 +77,10 @@ export default function Page() {
                   <TableCell>(11) 99999-9999</TableCell>
 
                   <TableCell className="w-[30px] text-right">
-                    <Button variant="outline" className="p-3">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
+                    <EditButton url="/students/edit" id={'1'} />
                   </TableCell>
                   <TableCell className="w-[30px] text-right">
-                    <Button variant="outline" className="p-3">
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                    <DeleteButton />
                   </TableCell>
                 </TableRow>
               )
