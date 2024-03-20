@@ -4,7 +4,7 @@ import { NavItems } from './NavItem'
 
 export function Sidebar() {
   return (
-    <aside className="flex h-full flex-col space-y-10 border-r border-neutral-900 px-4 py-8">
+    <aside className="flex h-screen flex-col space-y-10 border-r border-neutral-900 px-4 py-8">
       <div className="flex items-center justify-start gap-2">
         <ShieldHalf className="h-7 w-7 font-bold text-neutral-100" />
         <h1 className="text-2xl font-bold text-neutral-100">University UNO</h1>
