@@ -1,9 +1,27 @@
+import { Header } from '@/app/ui/Header'
 import { EditStudentForm } from './form'
+import Breadcrumbs from '@/app/ui/Breadcrumbs'
 
-export default function Page() {
+export default async function Page({ params }: { params: { id: string } }) {
+  const id = params.id
+
   return (
-    <main className="py-8 pl-8 pr-32">
-      <EditStudentForm />
-    </main>
+    <div>
+      <Header>
+        <Breadcrumbs
+          breadcrumbs={[
+            { label: 'Alunos', href: '/students' },
+            {
+              label: 'Editar aluno',
+              href: `/students/${id}/edit`,
+              active: true,
+            },
+          ]}
+        />
+      </Header>
+      <main className="py-8 pl-8 pr-32">
+        <EditStudentForm />
+      </main>
+    </div>
   )
 }
