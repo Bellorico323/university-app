@@ -1,5 +1,5 @@
 import { Header } from '@/app/ui/Header'
-import { EditSubjectForm } from './form'
+import { EditAddressesForm } from './form'
 import Breadcrumbs from '@/app/ui/Breadcrumbs'
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -10,17 +10,17 @@ export default async function Page({ params }: { params: { id: string } }) {
       <Header>
         <Breadcrumbs
           breadcrumbs={[
-            { label: 'Matérias', href: '/subjects' },
+            { label: 'Endereços', href: '/addresses' },
             {
-              label: 'Editar matéria',
-              href: `/subjects/${id}/edit`,
+              label: 'Editar endereços',
+              href: `/addresses/${id}/edit`,
               active: true,
             },
           ]}
         />
       </Header>
       <main className="py-8 pl-8 pr-32">
-        <EditSubjectForm />
+        <EditAddressesForm />
       </main>
     </div>
   )

@@ -7,7 +7,7 @@ import { TextArea } from '@/app/ui/Textarea'
 import { Clock, Pencil } from 'lucide-react'
 import Link from 'next/link'
 
-export function EditStudentForm() {
+export function EditSubjectForm() {
   return (
     <form className="grid grid-cols-6 gap-4 ">
       <div className="col-span-3 flex w-full flex-col items-start justify-center gap-2">
