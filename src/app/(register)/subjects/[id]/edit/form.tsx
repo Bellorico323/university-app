@@ -4,10 +4,10 @@ import { SelectInput } from '@/app/ui/Select'
 import { SelectItem } from '@/app/ui/Select/SelectItem'
 import { TextArea } from '@/app/ui/Textarea'
 
-import { Clock, Plus } from 'lucide-react'
+import { Clock, Pencil } from 'lucide-react'
 import Link from 'next/link'
 
-export function CreateSubjectForm() {
+export function EditStudentForm() {
   return (
     <form className="grid grid-cols-6 gap-4 ">
       <div className="col-span-3 flex w-full flex-col items-start justify-center gap-2">
@@ -64,11 +64,11 @@ export function CreateSubjectForm() {
         </Link>
 
         <Button
-          variant="secondary"
+          variant="tertiary"
           className=" flex items-center justify-center gap-2 p-3"
         >
-          Criar matéria
-          <Plus className="h-5 w-5" />
+          Editar matéria
+          <Pencil className="h-5 w-5" />
         </Button>
       </div>
     </form>

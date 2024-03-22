@@ -14,6 +14,7 @@ const InputControl = React.forwardRef<
   <input
     className={cn(
       'flex-1 border-0 bg-transparent p-0 text-neutral-200 placeholder-neutral-600 focus:outline-none',
+      '[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none', // remove setas do tipo number
       className,
     )}
     autoComplete="off"

@@ -10,8 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/app/ui/Table/table'
-import { CreateButton } from '@/app/ui/TableButtons'
-import { Pencil, Trash2 } from 'lucide-react'
+import { CreateButton, DeleteButton, EditButton } from '@/app/ui/TableButtons'
 
 import { Metadata } from 'next'
 
@@ -81,14 +80,10 @@ export default function Page() {
                     <TableCell>120 horas</TableCell>
                     <TableCell>Engenharia</TableCell>
                     <TableCell className="w-[30px] text-right">
-                      <Button variant="outline" className="p-3">
-                        <Pencil className="h-4 w-4" />
-                      </Button>
+                      <EditButton url="/subjects/edit" id="1" />
                     </TableCell>
                     <TableCell className="w-[30px] text-right">
-                      <Button variant="outline" className="p-3">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      <DeleteButton />
                     </TableCell>
                   </TableRow>
                 )
