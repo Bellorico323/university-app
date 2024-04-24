@@ -1,6 +1,6 @@
 'use client'
 import { cn } from '@/lib/utils'
-import { BookType, Library, MapPin, Users } from 'lucide-react'
+import { BookType, Library, Users } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ElementType } from 'react'
@@ -18,7 +18,6 @@ export function NavItems() {
     { title: 'Alunos', Icon: Users, path: '/students' },
     { title: 'Matérias', Icon: BookType, path: '/subjects' },
     { title: 'Cursos', Icon: Library, path: '/courses' },
-    { title: 'Endereços', Icon: MapPin, path: '/addresses' },
   ]
 
   return (

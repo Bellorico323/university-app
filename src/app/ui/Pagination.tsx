@@ -1,3 +1,5 @@
+'use client'
+
 import {
   ChevronLeft,
   ChevronRight,
@@ -5,19 +7,26 @@ import {
   ChevronsRight,
 } from 'lucide-react'
 import { Button } from './Button'
+import { usePathname, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 
 export interface PaginationProps {
-  pageIndex: number
   totalCount: number
-  perPage: number
 }
 
-export function Pagination({
-  pageIndex,
-  perPage,
-  totalCount,
-}: PaginationProps) {
-  const pages = Math.ceil(totalCount / perPage) || 1
+export function Pagination({ totalCount }: PaginationProps) {
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const currentPage = Number(searchParams.get('page')) || 1
+
+  const createPageURL = (pageNumber: number | string) => {
+    const params = new URLSearchParams(searchParams)
+    params.set('page', pageNumber.toString())
+
+    return `${pathname}?${params.toString()}`
+  }
+
+  const allPages = Math.ceil(totalCount / 7)
 
   return (
     <div className="mt-6 flex items-center justify-between">
@@ -27,40 +36,54 @@ export function Pagination({
 
       <div className=" flex items-center gap-6 lg:gap-8">
         <div className="flex text-sm font-medium text-neutral-400">
-          Página {pageIndex + 1} de {pages}
+          Página {currentPage} de {allPages}
         </div>
         <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            className="flex h-8 w-8 items-center justify-center p-0"
-          >
-            <ChevronsLeft className="h-4 w-4" />
-            <span className="sr-only">Primeira página</span>
-          </Button>
+          <Link href={createPageURL(1)}>
+            <Button
+              variant="outline"
+              className="flex h-8 w-8 items-center justify-center p-0"
+            >
+              <ChevronsLeft className="h-4 w-4" />
+              <span className="sr-only">Primeira página</span>
+            </Button>
+          </Link>
 
-          <Button
-            variant="outline"
-            className="flex h-8 w-8 items-center justify-center p-0"
+          <Link
+            href={createPageURL(currentPage - 1 <= 0 ? 1 : currentPage - 1)}
           >
-            <ChevronLeft className="h-4 w-4" />
-            <span className="sr-only">Próxima página</span>
-          </Button>
+            <Button
+              variant="outline"
+              className="flex h-8 w-8 items-center justify-center p-0"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              <span className="sr-only">Próxima página</span>
+            </Button>
+          </Link>
 
-          <Button
-            variant="outline"
-            className="flex h-8 w-8 items-center justify-center p-0"
+          <Link
+            href={createPageURL(
+              currentPage + 1 >= allPages ? allPages : currentPage + 1,
+            )}
           >
-            <ChevronRight className="h-4 w-4" />
-            <span className="sr-only">Página anterior</span>
-          </Button>
+            <Button
+              variant="outline"
+              className="flex h-8 w-8 items-center justify-center p-0"
+            >
+              <ChevronRight className="h-4 w-4" />
+              <span className="sr-only">Página anterior</span>
+            </Button>
+          </Link>
 
-          <Button
-            variant="outline"
-            className="flex h-8 w-8 items-center justify-center p-0"
-          >
-            <ChevronsRight className="h-4 w-4" />
-            <span className="sr-only">Última página</span>
-          </Button>
+          <Link href={createPageURL(allPages)}>
+            <Button
+              variant="outline"
+              className="flex h-8 w-8 items-center justify-center p-0"
+            >
+              <ChevronsRight className="h-4 w-4" />
+              <span className="sr-only">Última página</span>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,16 +1,10 @@
+import { fetchStudentsCount } from '@/app/api/actions/students-actions'
 import { Button } from '@/app/ui/Button'
 import { Header } from '@/app/ui/Header'
 import { Input } from '@/app/ui/Input'
 import { Pagination } from '@/app/ui/Pagination'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/app/ui/Table/table'
-import { CreateButton, DeleteButton, EditButton } from '@/app/ui/TableButtons'
+import { CreateButton } from '@/app/ui/TableButtons'
+import { StudentsTable } from '@/app/ui/students/table'
 
 import { Metadata } from 'next'
 
@@ -18,7 +12,19 @@ export const metadata: Metadata = {
   title: 'Alunos',
 }
 
-export default function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string
+    page?: string
+  }
+}) {
+  const query = searchParams?.query || ''
+  const currentPage = Number(searchParams?.page) || 1
+
+  const totalCount = await fetchStudentsCount()
+
   return (
     <>
       <Header>
@@ -60,39 +66,8 @@ export default function Page() {
           <div className="ml-auto">
             <CreateButton url="/students/create"></CreateButton>
           </div>
-          <Table>
-            <TableHeader className="border-neutral-900">
-              <TableRow>
-                <TableHead className="w-[360px]">Nome</TableHead>
-                <TableHead>Matricula</TableHead>
-                <TableHead>Curso</TableHead>
-                <TableHead>Telefone</TableHead>
-
-                <TableHead className="text-right"></TableHead>
-                <TableHead className="text-right"></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {Array.from({ length: 7 }).map((item, i) => {
-                return (
-                  <TableRow key={i}>
-                    <TableCell className="font-medium">Murillo Orico</TableCell>
-                    <TableCell>AVSD3137178SDF</TableCell>
-                    <TableCell>Engenharia</TableCell>
-                    <TableCell>(11) 99999-9999</TableCell>
-
-                    <TableCell className="w-[30px] text-right">
-                      <EditButton url="/students/edit" id={'1'} />
-                    </TableCell>
-                    <TableCell className="w-[30px] text-right">
-                      <DeleteButton />
-                    </TableCell>
-                  </TableRow>
-                )
-              })}
-            </TableBody>
-          </Table>
-          <Pagination pageIndex={0} totalCount={105} perPage={10} />
+          <StudentsTable query={query} currentPage={currentPage} />
+          <Pagination totalCount={totalCount || 10} />
         </div>
       </main>
     </>
