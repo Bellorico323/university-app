@@ -11,13 +11,20 @@ import {
 import { EditButton } from '../TableButtons'
 import { DeleteDialog } from './delete-dialog'
 
+export interface StudentSearchParams {
+  name?: string | null
+  course?: string | null
+  registration?: string | null
+}
+
 export async function StudentsTable({
   query,
   currentPage,
 }: {
-  query: string
+  query: StudentSearchParams
   currentPage: number
 }) {
+  console.log(query)
   const students = await fetchFilteredStudents(query, currentPage)
 
   return (

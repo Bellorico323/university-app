@@ -1,5 +1,6 @@
 'use server'
 
+import { StudentSearchParams } from '@/app/ui/students/table'
 import { prisma } from '@/services/database'
 import { Prisma, Student } from '@prisma/client'
 import { unstable_noStore as noStore, revalidatePath } from 'next/cache'
@@ -30,11 +31,13 @@ interface StudentResponse {
 }
 
 export async function fetchFilteredStudents(
-  query: string,
+  query: StudentSearchParams,
   currentPage: number,
 ): Promise<StudentResponse[]> {
   // noStore()
   const offset = (currentPage - 1) * ITEMS_PER_PAGE
+
+  await prisma.$connect()
 
   const students: StudentResponse[] = await prisma.$queryRaw`
         SELECT
@@ -50,13 +53,14 @@ export async function fetchFilteredStudents(
     LEFT JOIN
         courses c ON c.id = s."courseId"
     WHERE
-        (s.name LIKE '%' || ${query} || '%' OR ${query} IS NULL) AND
-        (c.name LIKE '%' || ${query} || '%' OR ${query} IS NULL) AND
-        (s.registration LIKE '%' || ${query} || '%' OR ${query} IS NULL)
+        (s.name LIKE '%' || ${query.name} || '%' OR ${query.name} IS NULL) AND
+        (c.name LIKE '%' || ${query.course} || '%' OR ${query.course} IS NULL) AND
+        (s.registration LIKE '%' || ${query.registration} || '%' OR ${query.registration} IS NULL)
       ORDER BY s."createdAt" DESC
     LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
   `
 
+  await prisma.$disconnect()
   return students
 }
 
