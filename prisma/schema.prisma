@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Account {
@@ -20,8 +20,7 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -50,4 +49,42 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Student {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  registration String   @default(uuid())
+  phone        String
+  cpf          String
+  courseId     String
+  createdAt    DateTime @default(now())
+  course       Course   @relation(fields: [courseId], references: [id])
+
+  @@map("students")
+}
+
+model Course {
+  id        String    @id @default(uuid())
+  name      String
+  type      String
+  period    String
+  createdAt DateTime  @default(now())
+  Student   Student[]
+  Subject   Subject[]
+
+  @@map("courses")
+}
+
+model Subject {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  workload    Int
+  courseId    String
+  createdAt   DateTime @default(now())
+  course      Course   @relation(fields: [courseId], references: [id])
+
+  @@map("subjects")
 }
